@@ -36,14 +36,10 @@ function signup(){
         postRequest('sign-up', account)
             .then((response) => {
                 if (response.ok) {
-                    return response.json();
+                    // 경로 이동
+                    location.href = "/pages/folder";
                 }
             })
-            .then(() => {
-                // 경로 이동
-                location.href = "/pages/folder";
-            })
-
     }
 }
 
