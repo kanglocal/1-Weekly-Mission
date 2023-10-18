@@ -35,8 +35,7 @@ function login(){
                 if(response.ok){
                     return response.json();
                 }else{
-                    setErrorMessage(email.id, 'login');
-                    setErrorMessage(password.id, 'login');
+                    throw new Error('error');
                 }
             })
             .then((result) => {
@@ -45,6 +44,9 @@ function login(){
 
                 // location.href = "/pages/folder";
                 location.reload();
+            }).catch(() => {
+                setErrorMessage(email.id, 'login');
+                setErrorMessage(password.id, 'login');
             })
     }
 }
