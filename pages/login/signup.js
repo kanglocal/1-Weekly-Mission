@@ -79,28 +79,25 @@ function _onValidateSignupInputValue(e){
 
 /**
  * 회원가입시 필요한 validation을 실행한다.
- * @param {string} id
- * @param {string} value
+ * @param {string} type target dom의 id
+ * @param {string} value target dom의 value
  */
-function validateSingupInputValue(id, value){
-    if(id === 'email'){
+function validateSingupInputValue(type, value){
+    if(type === 'email'){
         // 중복된 이메일인지 체크
-        const email = {
-            email : value,
-        }
-        postRequest('check-email', email)
+        postRequest('check-email', { email: value })
             .then((response) => {
                 if(!response.ok){
-                    setErrorMessage(id, 'duplicate');
+                    setErrorMessage(type, 'duplicate');
                 }
             })
 
-    } else if(id === 'password'){
+    } else if(type === 'password'){
         if(passwordReg.test(value) === false){
-            setErrorMessage(id, 'validation');
+            setErrorMessage(type, 'validation');
         }
 
-    } else if(id === 'passwordCheck') {
+    } else if(type === 'passwordCheck') {
         // 비밀번호가 일치하는지 체크
         const passwordCheck = document.querySelector('#passwordCheck');
         const password = document.querySelector('#password');
